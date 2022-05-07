@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherViewController" customModule="test_weather_ios_app" customModuleProvider="target">
             <connections>
+                <outlet property="cityLabel" destination="0TG-T3-UwL" id="nbD-yF-SPa"/>
+                <outlet property="emojiLabel" destination="mDg-dd-cRp" id="sBy-E8-HU1"/>
                 <outlet property="temperatureLabel" destination="h7Y-jy-0la" id="VjJ-KK-R8l"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,9 +21,21 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+35℃☀️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7Y-jy-0la">
-                    <rect key="frame" x="147.5" y="427" width="119" height="42"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7Y-jy-0la">
+                    <rect key="frame" x="207" y="448" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" name="NotoSansKannada-Bold" family="Noto Sans Kannada" pointSize="31"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDg-dd-cRp">
+                    <rect key="frame" x="207" y="398" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="150"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0TG-T3-UwL">
+                    <rect key="frame" x="153.5" y="548" width="107" height="60"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="50"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -29,7 +43,11 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="mDg-dd-cRp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EzV-iG-a3r"/>
+                <constraint firstItem="h7Y-jy-0la" firstAttribute="top" secondItem="mDg-dd-cRp" secondAttribute="bottom" constant="50" id="PP4-mB-pxi"/>
                 <constraint firstItem="h7Y-jy-0la" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Yku-8B-ouT"/>
+                <constraint firstItem="0TG-T3-UwL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="c1c-m6-8bL"/>
+                <constraint firstItem="0TG-T3-UwL" firstAttribute="top" secondItem="h7Y-jy-0la" secondAttribute="top" constant="100" id="hmF-y8-Py4"/>
                 <constraint firstItem="h7Y-jy-0la" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wSM-g4-Oyf"/>
             </constraints>
             <point key="canvasLocation" x="139" y="114"/>

@@ -6,26 +6,50 @@
 //
 
 import Foundation
+import CoreLocation
 
-class WeatherManager {
-    var urlSession = URLSession(configuration: URLSessionConfiguration.default)
+class WeatherManager: NSObject, CLLocationManagerDelegate {
     
-    func getTemperature() -> Double {
+    private let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+    private let locationManager = CLLocationManager()
+    
+    var onWeatherFetch: ((WeatherResponse) -> Void)?
+    
+    override init() {
+        super.init()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    func getTemperature(lat: Double, lon: Double) {
         let dataTask = urlSession.dataTask(
-            with: URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=30&lon=30&appid=d63b9d13706d4df079f43fad58b11a5b")!
+            with: URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=d63b9d13706d4df079f43fad58b11a5b&units=metric")!
         ) { data, response, error in
             if let data = data {
-                let string = String(data: data, encoding: .utf8)
-                print(string)
+                let decoder = JSONDecoder()
+                do {
+                    let weatherResponse = try decoder.decode(WeatherResponse.self, from: data)
+                    print(weatherResponse.coord, weatherResponse.main.temp)
+                    DispatchQueue.main.async {
+                        self.onWeatherFetch?(weatherResponse)
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                    print(error)
+                }
             }
         }
         dataTask.resume()
-        return 38.5
+        
     }
     
-    func funcNew(number: Int?) {
-        if number != nil {
-            type(of: numbe)
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+       let lat = locations.first?.coordinate.latitude
+        let lon = locations.first?.coordinate.longitude
+        if let lat = lat, let lon = lon {
+            getTemperature(lat: lat, lon: lon)
         }
+        
     }
 }
